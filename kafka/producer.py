@@ -1,6 +1,6 @@
 from confluent_kafka import Producer
 import socket
-topic = "examplekafka-stat"
+topic = "druid_topic"
 
 conf = {'bootstrap.servers': 'localhost:9094',
         'client.id': socket.gethostname()}
@@ -13,8 +13,9 @@ def acked(err, msg):
     else:
         print("Message produced: %s" % (str(msg)))
 
+example_data = {"timestamp":"2018-01-01T07:01:35Z","animal":"octopus",  "location":1, "number":100}
 for i in range(100):
-    producer.produce(topic, key="key", value=f"{str(i)} - spark", callback=acked)
+    producer.produce(topic, key="key", value=str(example_data), callback=acked)
 
     # Wait up to 1 second for events. Callbacks will be invoked during
     # this method call if the message is acknowledged.

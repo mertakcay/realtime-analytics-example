@@ -2,7 +2,7 @@ from pyspark.sql import SparkSession
 import os 
 
 KAFKA_BOOTSTRAP_SERVERS = "localhost:9094"
-KAFKA_TOPIC = "examplekafka-stat"
+KAFKA_TOPIC = "druid_topic"
 
 
 spark = SparkSession.builder.appName("read_test_straeam").getOrCreate()

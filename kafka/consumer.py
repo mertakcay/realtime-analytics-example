@@ -1,10 +1,10 @@
 from confluent_kafka import Consumer
 
 conf = {'bootstrap.servers': 'localhost:9094',
-        'group.id': 'kafka-stat',
+        'group.id': 'druid_topic',
         'auto.offset.reset': 'smallest'}
 
-topics = ['examplekafka-stat']
+topics = ['druid_topic']
 
 consumer = Consumer(conf)
 running=True
