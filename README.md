@@ -15,9 +15,9 @@ The project will use the following technologies:
 - [x] Create Kafka docker-compose 
 - [x] Create Druid docker-compose for OLAP
 - [x] Create Spark docker-compose
-- [ ] Create topic for Druid
-- [ ] Produce Kafka with Dummy Variable
-- [ ] Consume dummy data from Kafka
+- [x] Create topic for Druid
+- [x] Produce Kafka with Dummy Variable
+- [x] Consume dummy data from Kafka
 - [ ] Show dummy data on Superset
 - [ ] Create Scraping script from live-api
 - [ ] Set Kafka config to Druid
@@ -36,22 +36,23 @@ The project will use the following technologies:
 
 Some basic Kafka commands are:
 ```
-Create Topic
-docker-compose
+Create Topic - after connect kafka bash in docker
+./bin/kafka-topics.sh --bootstrap-server <topic_name>:9092 --create --topic <topic_name>
 
 List Topics 
+./bin/kafka-topics.sh --bootstrap-server=localhost:9092 --list
 ```
 
 ##### Docker
 Some basic Docker commands are:
 ```
 Run docker-compose file
-docker-compose 
+docker-compose <docker-compose-filename>
 ```
 
 ##### Producer
 Some basic Python commands are:
 ```
-docker-compose 
+python <producer_script_name.py>
 ```
 
