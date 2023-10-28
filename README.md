@@ -50,6 +50,11 @@ Run docker-compose file
 docker-compose <docker-compose-filename>
 ```
 
+```
+Connect docker bash 
+docker exec -it <container_name> bash
+```
+
 ##### Producer
 Some basic Python commands are:
 ```
