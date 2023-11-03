@@ -30,6 +30,8 @@ The project will use the following technologies:
 
 ## Install
 
+* If you are using macOS platform, you have to set env platform specific setting 
+
 #### Useful Scripts 
 
 ##### Kafka
@@ -54,6 +56,16 @@ docker-compose <docker-compose-filename>
 Connect docker bash 
 docker exec -it <container_name> bash
 ```
+
+##### Superset
+
+Firstly, you can pull files from the original repository and then run below code
+
+```
+Run docker-compose file
+cd superset && docker-compose up -d 
+```
+Hint: If you are using the other docker-compose simultaneously, you have to block port forward in superset docker-compose.
 
 ##### Producer
 Some basic Python commands are:
