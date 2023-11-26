@@ -1,0 +1,17 @@
+# Copyright VMware, Inc.
+# SPDX-License-Identifier: APACHE-2.0
+
+version: '2'
+services:
+  clickhouse:
+    image: docker.io/bitnami/clickhouse:23
+    environment:
+      - CLICKHOUSE_ADMIN_USER=admin
+      - CLICKHOUSE_ADMIN_PASSWORD=admin
+    ports:
+      - '8123:8123'
+    volumes:
+      - clickhouse_data:/bitnami/clickhouse
+volumes:
+  clickhouse_data:
+    driver: local

@@ -30,7 +30,11 @@ The project will use the following technologies:
 
 ## Install
 
-* If you are using macOS platform, you have to set env platform specific setting 
+* If you are using macOS platform, you have to set env platform specific setting
+```
+ export DOCKER_DEFAULT_PLATFORM=linux/amd64  
+```
+
 
 #### Useful Scripts 
 
@@ -66,6 +70,12 @@ Run docker-compose file
 cd superset && docker-compose up -d 
 ```
 Hint: If you are using the other docker-compose simultaneously, you have to block port forward in superset docker-compose.
+
+To connect druid, you should add pydruid to requirements.txt file 
+```
+#pydruid connector
+pydruid
+```
 
 ##### Producer
 Some basic Python commands are:
