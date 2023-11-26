@@ -10,6 +10,9 @@ The project will use the following technologies:
 - Docker: A platform that enables building, running and sharing applications using containers.
 - Superset: An open-source business intelligence platform that allows users to create and explore interactive dashboards and visualizations on their data.
 
+## Some Choices
+- Druid database management was abandoned because it was too complex for my current needs. Additionally, the Clickhouse Kafka connector was abandoned due to various requirement deficiencies in localhost. We will continue our journey with Cassandra.
+
 ## Roadmap 
 
 - [x] Create Kafka docker-compose 
