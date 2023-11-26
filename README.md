@@ -47,6 +47,10 @@ Create Topic - after connect kafka bash in docker
 
 List Topics 
 ./bin/kafka-topics.sh --bootstrap-server=localhost:9092 --list
+
+Add UI to Kafka
+docker run -p 8989:8080 -e KAFKA_BROKERS=host.docker.internal:9094 docker.redpanda.com/redpandadata/console:latest
+Hint: Cause of using host.docker.inter is that UI don't locate same network with Kafka Docker
 ```
 
 ##### Docker
