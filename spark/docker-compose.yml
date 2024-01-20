@@ -1,4 +1,8 @@
-version: '2'
+version: '2.2'
+
+networks:
+  druidsupersetexternal:
+    external: true
 
 services:
   spark:
@@ -12,6 +16,10 @@ services:
       - SPARK_USER=spark
     ports:
       - '8080:8080'
+    networks:
+      - druidsupersetexternal
+
+
   spark-worker:
     image: docker.io/bitnami/spark:3.5
     environment:
@@ -24,3 +32,5 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
       - SPARK_USER=spark
+    networks:
+      - druidsupersetexternal
