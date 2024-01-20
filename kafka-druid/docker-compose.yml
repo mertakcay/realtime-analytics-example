@@ -1,21 +1,3 @@
-#
-# Licensed to the Apache Software Foundation (ASF) under one
-# or more contributor license agreements.  See the NOTICE file
-# distributed with this work for additional information
-# regarding copyright ownership.  The ASF licenses this file
-# to you under the Apache License, Version 2.0 (the
-# "License"); you may not use this file except in compliance
-# with the License.  You may obtain a copy of the License at
-#
-#   http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing,
-# software distributed under the License is distributed on an
-# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-# KIND, either express or implied.  See the License for the
-# specific language governing permissions and limitations
-# under the License.
-#
 version: "2.2"
 
 volumes:
@@ -28,6 +10,9 @@ volumes:
   druid_shared: {}
   kafka_data: {}
 
+networks:
+  druidsupersetexternal:
+    external: true
 
 services:
   postgres:
@@ -41,8 +26,9 @@ services:
       - POSTGRES_PASSWORD=FoolishPassword
       - POSTGRES_USER=druid
       - POSTGRES_DB=druid
+    networks:
+      - druidsupersetexternal
 
-  # Need 3.5 or later for container nodes
   zookeeper:
     container_name: zookeeper
     image: zookeeper:3.5.10
@@ -50,9 +36,11 @@ services:
       - "2181:2181"
     environment:
       - ZOO_MY_ID=1
+    networks:
+      - druidsupersetexternal
 
   coordinator:
-    image: apache/druid:27.0.0
+    image: apache/druid:28.0.0
     container_name: coordinator
     volumes:
       - druid_shared:/opt/shared
@@ -66,9 +54,11 @@ services:
       - coordinator
     env_file:
       - environment
+    networks:
+      - druidsupersetexternal
 
   broker:
-    image: apache/druid:27.0.0
+    image: apache/druid:28.0.0
     container_name: broker
     volumes:
       - broker_var:/opt/druid/var
@@ -82,9 +72,11 @@ services:
       - broker
     env_file:
       - environment
+    networks:
+      - druidsupersetexternal
 
   historical:
-    image: apache/druid:27.0.0
+    image: apache/druid:28.0.0
     container_name: historical
     volumes:
       - druid_shared:/opt/shared
@@ -99,9 +91,11 @@ services:
       - historical
     env_file:
       - environment
+    networks:
+      - druidsupersetexternal
 
   middlemanager:
-    image: apache/druid:27.0.0
+    image: apache/druid:28.0.0
     container_name: middlemanager
     volumes:
       - druid_shared:/opt/shared
@@ -117,9 +111,11 @@ services:
       - middleManager
     env_file:
       - environment
+    networks:
+      - druidsupersetexternal
 
   router:
-    image: apache/druid:27.0.0
+    image: apache/druid:28.0.0
     container_name: router
     volumes:
       - router_var:/opt/druid/var
@@ -133,6 +129,8 @@ services:
       - router
     env_file:
       - environment
+    networks:
+      - druidsupersetexternal
 
   kafka:
     container_name: kafka2
@@ -142,13 +140,13 @@ services:
     volumes:
       - "kafka_data:/bitnami"
     environment:
-      # KRaft settings
       - KAFKA_CFG_NODE_ID=0
       - KAFKA_CFG_PROCESS_ROLES=controller,broker
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
-      # Listeners
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+    networks:
+      - druidsupersetexternal
