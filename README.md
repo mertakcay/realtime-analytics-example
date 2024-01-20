@@ -18,13 +18,13 @@ The project will use the following technologies:
 - [x] Create topic for Druid
 - [x] Produce Kafka with Dummy Variable
 - [x] Consume dummy data from Kafka
-- [ ] Show dummy data on Superset
+- [x] Show dummy data on Superset
 - [ ] Create Scraping script from live-api
-- [ ] Set Kafka config to Druid
-- [ ] Mount Druid and Kafka
+- [x] Set Kafka config to Druid
+- [x] Mount Druid and Kafka
 - [ ] Create Airflow for schedule and monitor DAG
-- [ ] Design architecture of live-stream data
-- [ ] So on, The list will be adjusted for requirements on going
+- [x] Design architecture of live-stream data
+- [x] So on, The list will be adjusted for requirements on going
 
 ## Architecture
 
