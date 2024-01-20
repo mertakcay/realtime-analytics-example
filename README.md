@@ -10,6 +10,8 @@ The project will use the following technologies:
 - Docker: A platform that enables building, running and sharing applications using containers.
 - Superset: An open-source business intelligence platform that allows users to create and explore interactive dashboards and visualizations on their data.
 
+### Notes
+- I couldn't add airflow to project because my memory isn't sufficent for that. I have planned different project for usage of airflow.
 ## Roadmap 
 
 - [x] Create Kafka docker-compose 
