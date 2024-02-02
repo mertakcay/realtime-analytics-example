@@ -64,6 +64,7 @@ docker exec -it <container_name> bash
 ```
 
 ##### Superset
+*Important*: You must add private network for all nodes in composes in order to connect superset from druid.
 
 Firstly, you can pull files from the original repository and then run below code
 
